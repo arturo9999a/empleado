@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block title %} Eliminar Empleado {% endblock title %} {% block content %} {% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell"> Eliminar Empleado: {{object.first_name}}</h1>
+        <!--con first_name se manda a traer el nombre del epmleado que se queire eliminar-->
+        <!--cell es u indicar que es hijjo de la clase grid-->
+
+
+        <form class="cell" method="POST"> {% csrf_token %}
+
+
+            <div class="callout secondary">
+                <h5>Desea eliminar este empleado</h5>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+                <a href="#">It's dangerous to go alone, take this.</a>
+            </div>
+
+            <p>confirme que desea Eliminar</p>
+            <button type="submit" class="success button">Confirmar</button>
+
+
+        </form>
+
+    </div>
+
+
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% block title %} Registrar empleado {% endblock title %} {% block content %} {% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Registrar empleado</h1>
+        <div class="cell">
+
+            <form class="cell grid-x grid-margin-x" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <!--enctype="multipart/form-data"> con esto guardara las imagenes en el administrado si no se le pone no las guardara-->
+                <!--siempre que se habla de form se habla de cajas de texto-->
+
+                <div class="medium-6 cell">
+                    <!--con esto se dara estilo al formulario por cada compo-->
+                    <label>Nombres
+                        {{form.first_name}}
+                </label>
+                </div>
+                <div class="cell large-6">
+                    <label>Apellido
+                        {{form.last_name}}
+                        <!-- {{form.fist_name}} con esto se le da estilo a los campos y se llama  uno por uno-->
+                    </label>
+                </div>
+
+                <div class="cell large-6">
+                    <label>Trabajo
+                        {{form.job}}
+                        <!-- {{form.fist_name}} con esto se le da estilo a los campos y se llama  uno por uno-->
+                    </label>
+                </div>
+
+                <div class="cell large-6">
+                    <label>Area
+                        {{form.departamento}}
+                        <!-- {{form.fist_name}} con esto se le da estilo a los campos y se llama  uno por uno-->
+                    </label>
+                </div>
+
+
+                <div class="cell large-12">
+                    <label>Habilidades extra:
+                        {{form.habilidades}}
+                    </label>
+                </div>
+
+
+                <div class="cell large-12">
+                    <label>Avatar
+                        {{form.avatar}}
+                    </label>
+                </div>
+
+
+
+                <div class="cell large-12">
+                    <button type="submit" class="button success"> Guardar </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock content %}

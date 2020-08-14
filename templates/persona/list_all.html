@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+<!--aqui nesesariamente se utilizan lo blockes content-->
+
+{% block content %} {% include 'includes/header.html' %}
+<!--todo esto o lo satributos que se quieren mandar a traer deven de ir dentro del bloque contend-->
+
+<div class="grid-container">
+    <!--<div class="grid-container" > esto ayuda a que tener un mejor margen de lapaagina o del contenido-->
+    <div class="grid-x">
+        <h1 class="cell"> Lista Empleado </h1>
+        <form class="cell grid-x grid-margin-x" method="GET"> {% csrf_token %}
+            <div class="cell large-7">
+                <input type="text" id="kword" name="kword" placeholder="buscar empleado">
+            </div>
+            <div class=" cell large-2">
+                <button type="submit" class="success button">Buscar</button>
+                <!--los botones de tipo submit son lo sque hacen las peticiones solo esos si no no accionara nada-->
+            </div>
+        </form>
+        <div class="cell">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th width="200">ID</th>
+                        <th>NOMBRES</th>
+                        <th width="150">APELLIDOS</th>
+                        <th width="150">DEPARTAMENTO</th>
+                        <th width="150">ACCION</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in object_list %}
+                    <tr>
+                        <td>{{e.id}}</td>
+                        <td>{{e.first_name}}</td>
+                        <td>{{e.last_name}}</td>
+                        <td>{{e.departamento}}</td>
+                        <td><a class="button warning" href=" {% url 'persona_app:empleado_detail' e.id %} ">VER</a></td>
+                        <!--con el e.id se le especifica de quien se quiere ver la informacion-->
+                    </tr>
+                    {% endfor %}
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <ul>
+
+
+
+
+
+            </ul>
+        </div>
+
+
+        <div class="cell">
+            {% if is_paginated %}
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <!--con esto le pregunta si tiene paginas atras que le muestre el previous -->
+                    <li class="pagination-previous">
+                        <a href="?page={{page_obj.previous_page_number}}">Atras</a>
+
+                        <!--"?page={{page.obj.previous_page_number}} dijango ya tra la funcion de ataras solo basta poner lo de adentro de comillas y le da funcion con la lcass para mandar link-->
+                    </li>
+                    {% endif %} {% for pagina in paginator.page_range %} {% ifequal pagina page_obj.number %}
+                    <li class="current"><span class="show-for-sr">You're on page</span> {{pagina}}</li>
+
+                    {% else %}
+                    <li><a href="?page={{pagina}}">{{pagina}}</a></li>
+                    {% endifequal %}
+
+
+
+                    <!--?page={{pagina}} con esa linea le da el link a los numeros de pagina para poder darle chick y envia al numero de pagina que es-->
+
+                    <!--con esto haces porner en automatico el nnumero de paginas que tiene los datos o la pagina-->
+
+                    {% endfor %} {% if page_obj.has_next %}
+                    <li class="pagination-next">
+                        <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            {% endif %}
+
+        </div>
+        {% endblock content %}
+        <!--  con esto hace una lista de los atributos en el html  -->

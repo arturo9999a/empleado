@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% load static %} {% block title %} {{object.full_name}} {% endblock title %} {% block content %} {% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell-large-4" style="width: 300px;">
+            <div class="card-divider">
+                <!--cuando es hijo o cell se puede deciar que tanto puede ocuoar en este caso 4 de la panralla-->
+                {{empleado.get_job_display}}
+                <!--siempre que sea choice para recuperar el nombre del trabajo-->
+            </div>
+
+            {% if empleado.avatar %}
+            <!--si tengo una igamen muestrala y si si no else muestra esta -->
+            <img src="{{empleado.avatar.url}}"> {% else %}
+            <img src="{% static 'img/777.png' %}"> {% endif %}
+
+
+            <div class="card-section">
+                <h4>{{empleado.full_name}}</h4>
+                <p>{{empleado.last_name}}</p>
+                <p>{{empleado.departamento.name}}</p>
+                <p> <span class="label"> habilidades: </span>
+                    <!--este hace que se pinte como un boton-->
+                    <ul class="vertical menu">
+
+                        {% for h in empleado.habilidades.all %}
+                        <!--con este objeto tiene el conjunto de todas las habilidadess-->
+                        <li>{{h.habilidad}}</li>
+                        {% endfor %}
+
+
+                    </ul>
+
+            </div>
+        </div>>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock content %}
+
+
+
+
+
+<h1>detalles de un empleado</h1>
+
+{{object}}
+<!---con esto se recupera todos los datos como si fuera un context para referirse a la base de datos solo que la class detailview ya la trae-->
+
+<h3>todos los datos </h3>
+<p>{{empleado.first_name}}</p>
+<!--se puede mandar a traer datos de las dos formas -->
+<p>{{empleado.last_name}}</p>
+<!--con nombe del modelo en minusculas mas el punto y su atributo o con object -->
+<p>{{empleado.habilidades}}</p>
+<p>{{empleado.first_name}}</p>

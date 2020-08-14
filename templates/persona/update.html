@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block title %} {% endblock title %} {% block content %} {% include 'includes/header.html' %}
+
+
+
+<div class="grid-container">
+    <!--con esto ya le da estilos de fundation -->
+    <div class="grid-x">
+        <h1 class="cell">
+            Modificar empleado
+        </h1>
+        <div class="cell">
+            <form class="grid-x grid-margin-x" method="POST">{% csrf_token %}
+                <!-- {{form.fist_name}} con esto se le da estilo a los campos y se llama  uno por uno-->
+                <div class="cell large-6">
+                    <label>Nombres
+                        {{form.first_name}}  
+                    </label>
+                </div>
+
+                <div class="cell large-6">
+                    <label>Apellido
+                        {{form.last_name}}
+                        <!-- {{form.fist_name}} con esto se le da estilo a los campos y se llama  uno por uno-->
+                    </label>
+                </div>
+
+                <div class="cell large-6">
+                    <label>Trabajo
+                        {{form.job}}
+                        <!-- {{form.fist_name}} con esto se le da estilo a los campos y se llama  uno por uno-->
+                    </label>
+                </div>
+
+                <div class="cell large-6">
+                    <label>Area
+                        {{form.departamento}}
+                        <!-- {{form.fist_name}} con esto se le da estilo a los campos y se llama  uno por uno-->
+                    </label>
+                </div>
+
+
+                <div class="cell large-6">
+                    <label>Habilidades extra:
+                        {{form.habilidades}}
+                    </label>
+                </div>
+
+                <div class="cell">
+                    <button type="submit" type="button" class="success button">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
